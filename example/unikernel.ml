@@ -87,13 +87,15 @@ module Main (C: V1_LWT.CONSOLE) (S: V1_LWT.STACKV4) = struct
     | `Ok term ->
       let rec loop (w, h) xs =
         let img = render term (w, h) xs in
-        (* Notty_unix.output_image_endline img ; *)
+        Notty_unix.output_image img ;
         N.write term (`Image img) >>== fun () ->
         N.read term >>= (function
             | `Ok (`Resize (w, h)) ->
               C.log_s c (green "resizing to %d, %d" w h) >>= fun () ->
               loop (w, h) xs
-            | `Ok x -> loop (w, h) (x :: xs)
+            | `Ok x ->
+              Printf.printf "ok\n%!" ;
+              loop (w, h) (x :: xs)
             | `Eof -> C.log_s c (red "eof while reading")
             | `Error e -> C.log_s c (red "error while reading %s" (N.error_message e)))
       in
