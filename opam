@@ -1,0 +1,33 @@
+opam-version: "1.2"
+maintainer: "Hannes Mehnert <hannes@aternefas>"
+authors: "Hannes Mehnert <hannes@aternefas>"
+homepage: "http://127.1"
+bug-reports: "http://127.1"
+license: "http://127.1"
+dev-repo: "http://127.1"
+name: "telnet"
+version: "1.0.0"
+build: [
+  ["ocaml" "pkg/build.ml" "native=%{ocaml-native}%"
+                          "native-dynlink=%{ocaml-native-dynlink}%"
+                          "mirage-types-lwt=%{mirage-types-lwt:installed}%"]
+]
+build-test: [
+  ["ocaml" "pkg/build.ml" "native=%{ocaml-native}%"
+                          "native-dynlink=%{ocaml-native-dynlink}%"
+                          "mirage-types-lwt=%{mirage-types-lwt:installed}%"]
+]
+
+depends: [
+  "ocamlfind" {build}
+  "ocamlbuild" {build}
+  "ppx_tools"
+  "cstruct" {>= "1.9.0"}
+  "lwt"
+]
+
+depopts: [
+  "mirage-types-lwt"
+]
+
+available: [ ocaml-version >= "4.02.0" ]
