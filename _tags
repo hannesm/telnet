@@ -1,13 +1,12 @@
-true : annot, bin_annot
-true : warn_error(+1..49)
+true : bin_annot, safe_string, principal
 true : warn(+A-4-6-7-9-40-42-44-48)
 "src" : include
 
-<src/wire.{ml,mli}>: package(cstruct.ppx), package(cstruct), package(sexplib), for-pack(Telnet)
-<src/server.{ml,mli}>: package(cstruct), for-pack(Telnet)
-<src/telnet.mli>: package(cstruct), for-pack(Telnet)
+true : package(cstruct)
 
-<mirage/telnet_mirage.{ml,mli}>: package(mirage-types), package(lwt), package(cstruct)
+<src/wire.{ml,mli}>: package(cstruct.ppx sexplib)
 
-<lwt/echo_server.{ml,mli,native}>: package(lwt), package(lwt.unix), package(sexplib), package(cstruct)
+<mirage/telnet_mirage.{ml,mli}>: package(mirage-types lwt)
+
+<lwt/echo_server.{ml,mli,native}>: package(lwt lwt.unix sexplib)
 

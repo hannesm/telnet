@@ -1,33 +1,29 @@
 opam-version: "1.2"
-maintainer: "Hannes Mehnert <hannes@aternefas>"
-authors: "Hannes Mehnert <hannes@aternefas>"
-homepage: "http://127.1"
-bug-reports: "http://127.1"
-license: "http://127.1"
-dev-repo: "http://127.1"
-name: "telnet"
-version: "1.0.0"
+maintainer: ["Hannes Mehnert <hannes@mehnert.org>"]
+authors: ["Hannes Mehnert <hannes@mehnert.org>"]
+homepage:     "https://github.com/hannesm/telnet"
+dev-repo:     "https://github.com/hannesm/telnet.git"
+bug-reports:  "https://github.com/hannesm/telnet/issues"
+doc:          "https://hannesm.github.io/telnet/doc"
+license:      "BSD2"
+
 build: [
-  ["ocaml" "pkg/build.ml" "native=%{ocaml-native}%"
-                          "native-dynlink=%{ocaml-native-dynlink}%"
-                          "mirage-types-lwt=%{mirage-types-lwt:installed}%"]
-]
-build-test: [
-  ["ocaml" "pkg/build.ml" "native=%{ocaml-native}%"
-                          "native-dynlink=%{ocaml-native-dynlink}%"
-                          "mirage-types-lwt=%{mirage-types-lwt:installed}%"]
+  ["ocaml" "pkg/pkg.ml" "build" "--pinned" "%{pinned}%"
+    "--with-mirage" "%{mirage-types+ipaddr+lwt+io-page:installed}%" ]
 ]
 
 depends: [
   "ocamlfind" {build}
   "ocamlbuild" {build}
   "ppx_tools" {build}
+  "topkg" {build}
   "cstruct" {>= "1.9.0"}
   "lwt"
+  "sexplib"
 ]
 
 depopts: [
-  "mirage-types-lwt"
+  "mirage-types" "ipaddr" "io-page"
 ]
 
 available: [ ocaml-version >= "4.02.0" ]
