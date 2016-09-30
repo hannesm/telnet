@@ -9,7 +9,7 @@ let () =
   let opams =
     [ Pkg.opam_file "opam" ~lint_deps_excluding:(Some ["ppx_tools"; "io-page"; "ipaddr"]) ]
   in
-  Pkg.describe ~opams "otr" @@ fun c ->
+  Pkg.describe ~opams "telnet" @@ fun c ->
   let mirage = Conf.value c mirage in
   Ok [
     Pkg.mllib ~api:["Telnet"] "src/telnet.mllib";
