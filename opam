@@ -9,7 +9,7 @@ license:      "BSD2"
 
 build: [
   ["ocaml" "pkg/pkg.ml" "build" "--pinned" "%{pinned}%"
-    "--with-mirage" "%{mirage-types+ipaddr+lwt+io-page:installed}%" ]
+    "--with-mirage" "%{mirage-types+ipaddr+io-page:installed}%" ]
 ]
 
 depends: [

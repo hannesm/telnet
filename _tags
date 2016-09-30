@@ -6,7 +6,7 @@ true : package(cstruct)
 
 <src/wire.{ml,mli}>: package(cstruct.ppx sexplib)
 
-<mirage/telnet_mirage.{ml,mli}>: package(mirage-types lwt)
+<mirage/telnet_mirage.{ml,mli}>: package(mirage-types.lwt lwt)
 
 <lwt/echo_server.{ml,mli,native}>: package(lwt lwt.unix sexplib)
 
